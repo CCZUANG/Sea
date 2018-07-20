@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>我的第一個網頁</title>
+<style type="text/css">
+
+body {
+       background: url(image/little_tree.jpg) no-repeat 0px 0px;
+	   background-size: cover;
+	   background-attachment : scroll;
+	   
+	 }
+	 
+#Say_hello { margin: 100px  100px 10px 500px ;
+             font-weight: bold;
+			 font-family: Sans-serif;}
+#login_interface { margin: 10px 400px 10px 400px ;
+                   font-family: Sans-serif;
+				   border-style:solid;
+				   border-width: 2px;
+				   border-color: gray;
+				   border-radius:50px 10px;
+				   padding: 10px 20px 10px 100px;}
+
+</style>
+<!--<link rel=stylesheet type="text/css" href="color.css">-->
+<script type="text/javascript">
+function onLoad(){
+    content1.style.display='none';
+	content2.style.display='none';
+	
+
+      //if(typeof(Storage) == "undefined")
+      //{ alert("您的瀏覽器不支援 Web Storage")
+      //}else{ 
+	     if(localStorage.username){
+		    if(!localStorage.counter){
+			  localStorage.counter = 1;
+			}else{
+			  localStorage.counter++;
+			}
+			
+			login_interface.style.display='none';
+			content1.style.display='';
+	        content2.style.display='';
+			
+		 }else{	
+	        		
+	        content1.style.display='none';
+	        content2.style.display='none';	 
+	       }
+		   btn_login.addEventListener("click", login);
+		   btn_logout.addEventListener("click", logout);
+		   btn_clear.addEventListener("click",clear);
+		   show_LocalStorage.innerHTML=localStorage.username+"您好, 這是您第"+localStorage.counter+"次來到這個網站";
+	       //Save.addEventListener("click", saveToLocalStorage);
+           //Load.addEventListener("click", loadFromLocalStorage);
+           //Clear.addEventListener("click",clearLocalStorage);
+		//}
+	}
+
+function login(){
+        localStorage.username = inputname.value;
+		location.reload();
+	
+}
+
+function logout(){        
+		login_interface.style.display='';
+		content1.style.display='none';
+	    content2.style.display='none';
+        show_LocalStorage.innerHTML="您已成功登出";
+        		
+	
+}
+
+function clear(){
+        localStorage.clear();
+		login_interface.style.display='';
+		content1.style.display='none';
+	    content2.style.display='none';
+        show_LocalStorage.innerHTML="您已成功登出";
+
+}
+
+
+//function loadFromLocalStorage(){
+	    
+//}
+
+//function clearLocalStorage(){
+//        localStorage.clear();
+//}
+</script>
+</head>
+<body onload="onLoad()">
+<p id="Say_hello">
+Hi! <span id="show_LocalStorage"></span>!
+</p>
+<br/>
+<br/>
+<div id="login_interface">
+<form method="post",action="">
+
+   請輸入帳號密碼<br/>
+   帳號 : <input type="text" id="inputname" value="" size="20" /><br/>
+   密碼 : <input type="password" name="password" size="20"/><br/>
+   國家 : <select size="1" name="country" multiple="multiple">
+             <option> Taiwan </option>
+             <option> U.S.A. </option>
+             <option> others </option>
+          </select><br/>
+   區域 : <input list="area" />
+           <datalist id="area">
+			  <option value="enunion"></option>
+			  <option value="forentia"></option>
+		   </datalist><br/>
+	<br/>
+</form>
+<button id="btn_login"> 登入 </button>
+</div>
+<div id="content1">
+ <fieldset>
+  <legend> 個人基本資料 </legend> 
+	<input type="radio" name="gender" value="女生" checked/> 女生
+	<input type="radio" name="gender" value="男生" /> 男生
+	<br/>
+	<br/>
+	請選擇您的興趣:(可複選)<br/>
+	<input type="checkbox" name="interest" value="movie" checked/> 電影 <br/>
+	<input type="checkbox" name="interest" value="sport" > 運動 <br/>
+    <button id="btn_logout"> 儲存並登出 </button> 
+	<button id="btn_clear">  清除登入紀錄並登出 </button> 
+ </fieldset>
+</div>
+ <br/>
+ <!--<input type="submit" value="登入" name="S1" id="login"/>-->
+ 
+ <!--<input type="reset" value="重設" name="R1"/> 
+ <input type="button" value="回上一頁" name="B1" onclick="javascript:history.back();"/>-->
+<!--
+ <button id="Save"> Save </button>
+ <button id="Load"> Load </button>
+ <button id="Clear"> Clear </button>
+ -->
+ <br/>
+<div id="content2">
+ <image src="image/海之聲.jpg" alt="Opi" heigh="260" width="280"/>
+ <!--<audio src="audio/久石讓-天空之城.mp3" type="audio/mpeg" controls="controls" autoplay loop></audio>-->
+ <!--<video src="video/Secret base.mp4" controls="controls" loop autoplay></video>-->
+ <p>
+ <a href="https://www.youtube.com/embed/wP1_iGNlXL8?autoplay=1" target="main"> Secret base～君がくれたもの～ </a>
+ &nbsp;
+ <a href="https://www.youtube.com/embed/wixNUhN2NOQ?autoplay=1" target="main"> 奧華子 楔 </a><br/>
+ </p>
+ <iframe name="main" width="560" height="315" src="https://www.youtube.com/embed/wP1_iGNlXL8" frameborder="0" allow="autoplay; encrypted-media" seamless allowfullscreen></iframe>
+</div>
+
+ </body>
+
+</html>
